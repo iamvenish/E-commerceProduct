@@ -8,7 +8,7 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp", policy =>
     {
-        policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
     });
 });
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -18,8 +18,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         );
 });
 builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
 var app = builder.Build();
+app.UseSwagger();
+app.UseSwaggerUI();
 app.UseCors("AllowAngularApp");
 app.MapControllers();
-
 app.Run();
