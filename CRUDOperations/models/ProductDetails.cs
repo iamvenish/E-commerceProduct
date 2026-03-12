@@ -17,6 +17,13 @@ namespace CRUDOperations.models
         public int? Rating { get; set; }
 
         [Required]
+        public double OrginalPrice { get; set; }
+
+        [Required]
+        [Range(0 , 100 , ErrorMessage = "Discount percentage is between {0} and {1}")]
+        public int DiscountOff {  get; set; }
+
+        [Required]
 
         public double? Price { get; set; }
 
