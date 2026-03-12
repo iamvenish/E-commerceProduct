@@ -38,5 +38,19 @@ namespace CRUDOperations.Controllers
         });
 
         }
+
+        [HttpGet]
+
+        public IActionResult GetAddToCartProduct()
+        {
+            var AddToCartProducts = _context.AddToCartDetails.ToList();
+
+            if(AddToCartProducts == null)
+            {
+                return BadRequest(new { message = "AddToCartProduct still Not Listed!" });
+            }
+
+            return Ok(new { message = "AddToCart Products Get Successfully!", data = AddToCartProducts });
+        }
     }
 }
