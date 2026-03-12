@@ -12,5 +12,8 @@ namespace CRUDOperations.Data
 
         public DbSet<User> Users { get; set; }
         public DbSet<ProductDetails> ProductDetails { get; set; }
+
+        public DbSet<AddToCartDetails> AddToCartDetails { get; set; }
+
     }
 }
