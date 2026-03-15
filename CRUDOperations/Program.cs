@@ -8,7 +8,12 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAngularApp", policy =>
     {
-        policy.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+        policy.WithOrigins(
+            "http://localhost:4200",
+            "https://iamvenish.github.io"
+        )
+        .AllowAnyHeader()
+        .AllowAnyMethod();
     });
 });
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -24,6 +29,6 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseCors("AllowAngularApp");
+app.UseRouting();
 app.MapControllers();
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-app.Run($"http://*:{port}");
+app.Run();
