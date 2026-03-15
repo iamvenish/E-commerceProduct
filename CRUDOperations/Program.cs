@@ -25,4 +25,5 @@ app.UseSwagger();
 app.UseSwaggerUI();
 app.UseCors("AllowAngularApp");
 app.MapControllers();
-app.Run();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Run($"http://*:{port}");
