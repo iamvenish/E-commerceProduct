@@ -20,6 +20,15 @@ namespace CRUDOperations.Controllers
         {
             var products = _context.ProductDetails.Find(id);
 
+            if(products == null)
+            {
+                return NotFound(new
+                {
+                    message = "Product Details is Not Found in this!"
+                });
+            }
+
+            
             var productItem = new AddToCartDetails
             {
                 AddToCartId = Guid.NewGuid(),
