@@ -21,7 +21,7 @@ namespace CRUDOperations.Controllers
         // GET: DeleteAddToCartProductController
         public IActionResult DeleteAddToCartProduct(Guid id)
         {
-            var product = _context.AddToCartDetails.Find(id);
+            var product = _context.AddToCartDetails.FirstOrDefault(product => product.AddToCartId == id);
 
             if(product == null)
             {
