@@ -17,11 +17,15 @@ namespace CRUDOperations.Controllers
         [HttpPatch("increment/{id}")]
         public IActionResult Increment(Guid id)
         {
-            var Item = _context.AddToCartDetails.Find(id);
+            var Item = _context.AddToCartDetails.FirstOrDefault(item => item.AddToCartId == id);
 
             if(Item == null)
             {
-                return NotFound(new { message = "AddToCart product Is Not Added!" });
+                return NotFound(new 
+                { 
+                    id = id,
+                    message = "AddToCart product Is Not Added!" 
+                });
             }
 
             Item?.AddToCartQuantity += 1;
@@ -33,7 +37,8 @@ namespace CRUDOperations.Controllers
 
         public IActionResult Decrement(Guid id)
         {
-            var Item = _context.AddToCartDetails.Find(id);
+            var Item = _context.AddToCartDetails.FirstOrDefault(item => item.AddToCartId == id);
+
             if(Item  == null)
             {
                 return NotFound(new
